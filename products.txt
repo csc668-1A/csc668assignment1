@@ -1,0 +1,8 @@
+1001     apple                    0001.09
+1002     banana                   0001.19
+1003     grapefruit               0002.99
+1004     knife                    0005.99
+1005     plate                    0003.99
+1006     toothbrush               0003.50
+1007     squash                   0002.49
+1008     table                    0149.99
