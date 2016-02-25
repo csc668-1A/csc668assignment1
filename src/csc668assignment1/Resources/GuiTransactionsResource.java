@@ -6,13 +6,13 @@
 package csc668assignment1.Resources;
 
 import csc668assignment1.Transaction_AxelVersion;
-
+import java.rmi.*;
 /**
  *
  * @author axelanconaesselmann
  */
 public class GuiTransactionsResource extends TransactionsResource {
-
+public GuiTransactionsResource() throws RemoteException{}
     @Override
     public boolean hasNext() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

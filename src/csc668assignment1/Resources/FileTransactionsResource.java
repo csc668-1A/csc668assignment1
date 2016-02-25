@@ -16,7 +16,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-
+import java.rmi.*;
 /**
  *
  * @author axelanconaesselmann
@@ -24,7 +24,7 @@ import java.nio.file.Path;
 public class FileTransactionsResource extends TransactionsResource {
     protected BufferedReader _fileHandler;
     
-    public FileTransactionsResource (String fileName) throws ResourceException {
+    public FileTransactionsResource (String fileName) throws ResourceException, RemoteException {
         Path path = FileSystems.getDefault().getPath(fileName);
         try {
             _fileHandler = Files.newBufferedReader(path, StandardCharsets.UTF_8);
@@ -74,7 +74,7 @@ public class FileTransactionsResource extends TransactionsResource {
             return new CreditPayment(line.substring(7,11));
         } else return null;
     }
-
+    //This print is not use in POST 2!!!!!!!!!!!!
     @Override
     public void printTransaction(Transaction_AxelVersion transaction) {
         System.out.printf("%s\n%s     %d\n%s\n\n", 
