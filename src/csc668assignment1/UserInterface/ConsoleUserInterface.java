@@ -9,6 +9,7 @@ import csc668assignment1.Resources.FileProductsResource;
 import csc668assignment1.Resources.FileTransactionsResource;
 import csc668assignment1.Resources.ResourceException;
 import java.io.IOException;
+import java.rmi.*;
 
 /**
  *
@@ -20,7 +21,7 @@ public class ConsoleUserInterface extends UserInterface {
      * @param transactionsFileName
      * @param productsFileName 
      */
-    public ConsoleUserInterface(String transactionsFileName, String productsFileName) {
+    public ConsoleUserInterface(String transactionsFileName, String productsFileName) throws RemoteException{
         _init();
         try {
             _transactions = new FileTransactionsResource(transactionsFileName);
@@ -29,7 +30,7 @@ public class ConsoleUserInterface extends UserInterface {
             this.printAlertMessage("Could not initialize resources:\n\n" + ex.getMessage());
         }
     }
-    public ConsoleUserInterface(String transactionsFileName) {
+    public ConsoleUserInterface(String transactionsFileName) throws RemoteException{
         _init();
         try {
             _transactions = new FileTransactionsResource(transactionsFileName);

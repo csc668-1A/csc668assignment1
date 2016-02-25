@@ -37,8 +37,8 @@ public class Manager {
         p = ProductCatalog.getProductCatelog(filename);
         p.setProductCatelog();
         } catch (Exception e) {
-            UserInterface ui = new UserInterface();
-            ui.printString("Product Catalog could not be initialized; exiting Post system");
+            //UserInterface ui = new UserInterface();
+            System.out.print("Product Catalog could not be initialized; exiting Post system");
             System.exit(1);
         }
         return p;

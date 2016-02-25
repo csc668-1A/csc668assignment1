@@ -26,34 +26,35 @@ public class SalesLog {
      */
     public void viewAllInvoices(){
         int i,j=0;
-        UserInterface ui = new UserInterface();
+       // UserInterface ui = new UserInterface();
         Invoice current;
         TransactionItem currentItem;
         TransactionItem[] productList;
         
         if(invoiceList.isEmpty()){
-            ui.printToGeneralOut("No Records in Sales Log.");
+            System.out.print("No Records in Sales Log.");
             return;
         }else{
             for(i=invoiceList.size()-1; i>=0;i--){
                 current = invoiceList.get(i);
                 productList=current.getProductList();
                 currentItem = productList[j];
-                ui.printToGeneralOut("name: "+current.getCustomerName()+"\n");
+                System.out.print("name: "+current.getCustomerName()+"\n");
                 //printing salesLineItems for the current invoice, 
                 //assuming at least one item
                 for(j=0; currentItem!=null;j++){
-                    ui.printToGeneralOut(null);
-                    ui.printToGeneralOut("<"+currentItem.getProductSpec().getDescription()+" "
+                    
+                    System.out.print("<"+currentItem.getProductSpec().getDescription()+" "
                         +currentItem.getQuantity()+" @ " 
                         +currentItem.getProductSpec().getUnitPrice()+" "
                         +currentItem.getSubtotal()+">");
-                    ui.printToGeneralOut("\n");
+                    System.out.print("\n");
                     productList=current.getProductList();
                     currentItem = productList[j];
                     
                 }
                 //after all items printed, print subtotal and payment.
+                /*
                 ui.printToGeneralOut("-----\n");
                 ui.printToGeneralOut("Total: "+current.getTotal());
                 ui.printToGeneralOut("\n");
@@ -69,7 +70,7 @@ public class SalesLog {
                     ui.printToGeneralOut("Paid by Credit Card number: "+current.getCardNum());
                     ui.printToGeneralOut("\n");
                 }
-                
+                */
             }
         }
     }
@@ -83,12 +84,12 @@ public class SalesLog {
         int i;
         int j=0;
         Invoice current;
-        UserInterface ui = new UserInterface();
+      //  UserInterface ui = new UserInterface();
         TransactionItem currentItem;
         TransactionItem[] productList;
         
         if(invoiceList.isEmpty()){
-            ui.printToGeneralOut("No Records in Sales Log.");
+           System.out.print("No Records in Sales Log.");
             return;
         }
         
@@ -100,6 +101,7 @@ public class SalesLog {
                 currentItem = productList[j];
                 //printing salesLineItems for the current invoice, 
                 //assuming at least one item
+                /*
                 for(j=0; currentItem!=null;j++){
                     ui.printToGeneralOut(null);
                     ui.printToGeneralOut("<"+currentItem.getProductSpec().getDescription()+" "
@@ -129,12 +131,15 @@ public class SalesLog {
             }
         }
     }
-    }
+    }*/
     
     /**
      * adds the Invoice object to a linked list of past sales.
      * @param t the transaction invoice to be recorded. 
      */
+            }
+        }
+    }
     public void recordInvoice(Invoice t){
         invoiceList.add(t);
     }

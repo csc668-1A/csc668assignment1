@@ -1,7 +1,8 @@
 
 package csc668assignment1;
 import csc668assignment1.UserInterface.*;
-
+import java.rmi.server.UnicastRemoteObject;
+import java.rmi.*;
 /**
   *
   * Author: Paul Previde
@@ -26,15 +27,15 @@ public class Store {
     private final static String TRANSACTIONSFILE = "Transactions.txt";
 
     // There is no public constructor and no default, no-arg constructor
-    protected Store () { }
-
+    protected Store (){}
     // createStore() method is responsible for creating the single Store instance
     private static void createStore() {
         if (store==null) {
+         
             store = new Store();
-        }
+         
     }
-
+    }
     public void openStore() {
         this.setIsOpen(true);
     }
@@ -47,8 +48,8 @@ public class Store {
         try {
         this.post = new Post(TRANSACTIONSFILE);
         } catch (Exception e) {
-            UserInterface ui = new UserInterface();
-            ui.printString("Transactions file not found, program will exit.");
+           // UserInterface ui = new UserInterface();
+           System.out.print("Transactions file not found, program will exit.");
             System.exit(1);
         }
     }
@@ -123,13 +124,15 @@ public class Store {
         // Post instance is requested to carry out the transactions
         try {
         post.execute();
+        
         } catch (Exception e) {
-            UserInterface ui = new UserInterface();
-            ui.printString("Post failed to process the transactions. Program will exit.");
+           // UserInterface ui = new UserInterface();
+           System.out.print("Post failed to process the transactions. Program will exit.");
             System.exit(1);
         }   
         // After customers have been served, Manager closes the store
         manager.closeStore(store);
+        System.exit(0);
     } // end main method
 
 }

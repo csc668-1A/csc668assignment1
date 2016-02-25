@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+//modify this print() to print in GUI
 package csc668assignment1;
 import csc668assignment1.payment.CashPayment;
 import csc668assignment1.payment.CheckPayment;
@@ -12,6 +13,8 @@ import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.text.DecimalFormat;
 import csc668assignment1.UserInterface.*;
+
+import java.rmi.*;
 
 /**
  * This represents an Invoice from the purchase of an item(s)
@@ -34,7 +37,7 @@ public class Invoice {
     private double ReturedAmount;
     private int cardNum;
     private double total;
-    private UserInterface ui = new UserInterface();
+   // private UserInterface ui = new UserInterface();
     
     public Invoice(Transaction t){
         //set the Timestamp
@@ -83,12 +86,21 @@ public class Invoice {
      * Amount Tendered: xxxx.xx OR Paid by check OR Creadit Card ddddd
      * Amount Returned: xxxx.xx
      */
+    //This print is use in POST 2!!!!!!!!!!!!!1
     public void print(){
-        //need to be implemented
-        ui.println(this.customerName);
-        DecimalFormat numberFormat = new DecimalFormat("#.00");
         
-        ui.println(this.storeName);
+        try{
+            UserInterface ui = new UserInterface();
+        
+        
+        //need to be implemented
+                ui.print("\n");
+
+        ui.print(this.customerName);
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+         ui.print("\n");
+         ui.print(this.storeName);
+    
         for(int i = 0; i < this.totalTransItem; i++){
             String s = "";
             s += this.salesLineItem[i].getProductSpec().getDescription() + "\t";
@@ -96,21 +108,32 @@ public class Invoice {
             s += " @ ";
             s += this.salesLineItem[i].getProductSpec().getUnitPrice() + "\t";
             s += this.salesLineItem[i].getSubtotal();
-            ui.println(s); 
+                    System.out.print("\n");
+
+            ui.print(s); 
         }
-        ui.println("-----------------------------------------");
-        ui.println("Total $" + Math.floor(this.total * 100) / 100);
+                ui.print("\n");
+
+         ui.print("-----------------------------------------");
+                 ui.print("\n");
+
+        ui.print("Total $" + Math.floor(this.total * 100) / 100);
+                ui.print("\n");
+
         if(this.paymentType.equals("CHECK")){
-            ui.println("Paid by check");
+             ui.print("Paid by check");
         }else if(this.paymentType.equals("CREDIT")){
-            ui.println("Paid by Credit Card " + this.cardNum);
+            ui.print("Paid by Credit Card " + this.cardNum);
         }else{//cash
-            ui.println("Amount Tendered: " + numberFormat.format(this.TenderedAmount));
-            ui.println("Amount Returned: " + numberFormat.format(this.ReturedAmount));
+             ui.print("Amount Tendered: " + numberFormat.format(this.TenderedAmount));
+                     ui.print("\n");
+
+             ui.print("Amount Returned: " + numberFormat.format(this.ReturedAmount));
         }
 
-        ui.println("");
-
+         ui.print("");
+}catch(RemoteException e){
+        }
        
     }
 /*      ACCESSORS             */
